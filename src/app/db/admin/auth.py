@@ -1,4 +1,3 @@
-from sqladmin import Admin
 from sqladmin.authentication import AuthenticationBackend
 from starlette.requests import Request
 from uuid import uuid4

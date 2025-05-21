@@ -3,10 +3,8 @@ from fastapi import status
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from fastapi.staticfiles import StaticFiles
 from pydantic_settings import BaseSettings
 from loguru import logger
-from contextlib import asynccontextmanager
 
 from app.db.admin import attach_admin_panel
 
@@ -26,8 +24,6 @@ def register_exception(application):
             content=content, status_code=status.HTTP_422_UNPROCESSABLE_ENTITY
         )
 
-    application.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
-
 
 def register_cors(application):
     application.add_middleware(
@@ -42,7 +38,7 @@ def register_cors(application):
 def init_web_application():
     project_settings = ProjectSettings()
     application = FastAPI(
-        title="Task api",
+        title="Spanish lesson api",
         openapi_url='/openapi.json',
         docs_url='/docs',
         redoc_url='/redoc'
@@ -52,10 +48,10 @@ def init_web_application():
         register_exception(application)
         register_cors(application)
 
-    from app.routes.task import router as task_router
+    from app.routes.lesson import router as lesson_router
     from app.routes.web import router as web_router
 
-    application.include_router(task_router)
+    application.include_router(lesson_router)
     application.include_router(web_router)
     # application.mount("/static", StaticFiles(directory="static"), name="static")
 
