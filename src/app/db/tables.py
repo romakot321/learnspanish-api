@@ -23,7 +23,7 @@ class BaseMixin:
         return "".join(letters).lstrip("_") + "s"
 
     id: M[int] = column(primary_key=True, index=True)
-    created_at: M[dt.datetime] = column(server_default=sql_utcnow)
+    created_at: M[dt.datetime] = column(server_default=sql_utcnow, default=dt.datetime.now)
     updated_at: M[dt.datetime | None] = column(nullable=True, onupdate=sql_utcnow)
 
 

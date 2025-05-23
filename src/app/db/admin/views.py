@@ -5,7 +5,7 @@ from sqladmin.formatters import Markup
 
 
 def format_file_url(model, attribute) -> Markup:
-    return Markup(f'<audio controls><source src="/api/task/{model.id}" type="audio/wav"></audio>')
+    return Markup(f'<audio controls><source src="/api/lesson/{model.id}" type="audio/wav"></audio>')
 
 
 def format_image_url(model, attribute) -> Markup:

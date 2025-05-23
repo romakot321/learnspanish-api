@@ -13,6 +13,8 @@ services:
     networks:
       global_network:
       default:
+    volumes:
+      - storage:/app/storage
 
   postgres:
     image: postgres:latest
@@ -22,9 +24,11 @@ services:
       - .env
     networks:
       default:
-    ports:
-      - "5432:5432"
 
 networks:
   global_network:
     external: true
+
+
+volumes:
+  storage:

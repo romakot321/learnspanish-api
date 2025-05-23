@@ -13,7 +13,7 @@ router = APIRouter(prefix="/api/lesson", tags=["Lesson"])
 
 
 @router.get(
-    "/{lesson_id}", response_class=Response, dependencies=[Depends(validate_api_token)]
+    "/{lesson_id}", response_class=Response
 )
 async def get_lesson_file(lesson_id: int, service: LessonService = Depends()):
     buffer = await service.get_file(lesson_id)

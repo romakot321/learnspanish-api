@@ -17,7 +17,6 @@ class LessonRepository[Table: Lesson, int](BaseRepository):
     async def get(self, model_id: int) -> Lesson:
         return await self._get_one(
             id=model_id,
-            select_in_load=[Lesson.items]
         )
 
     async def count(self):
