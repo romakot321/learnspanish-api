@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi import status
+from fastapi.staticfiles import StaticFiles
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -54,6 +55,7 @@ def init_web_application():
     application.include_router(lesson_router)
     application.include_router(web_router)
     # application.mount("/static", StaticFiles(directory="static"), name="static")
+    application.mount("/storage", StaticFiles(directory="storage"))
 
     attach_admin_panel(application)
 
