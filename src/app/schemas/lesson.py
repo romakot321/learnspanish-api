@@ -12,8 +12,8 @@ class LessonSchema(BaseModel):
     level: int
 
     @computed_field
-    def audio_url(cls, value: str | None, _info: ValidationInfo) -> str:
-        return "https://" + domain + "/api/lesson/" + str(_info.data.get("id"))
+    def audio_url(self) -> str:
+        return "https://" + domain + "/api/lesson/" + str(self.id)
 
     model_config = ConfigDict(from_attributes=True)
 
@@ -24,8 +24,8 @@ class LessonShortSchema(BaseModel):
     level: int
 
     @computed_field
-    def audio_url(cls, value: str | None, _info: ValidationInfo) -> str:
-        return "https://" + domain + "/api/lesson/" + str(_info.data.get("id"))
+    def audio_url(self) -> str:
+        return "https://" + domain + "/api/lesson/" + str(self.id)
 
     model_config = ConfigDict(from_attributes=True)
 
