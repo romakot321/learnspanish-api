@@ -35,3 +35,9 @@ class LessonService:
         if model.preview is None:
             raise HTTPException(404)
         return BytesIO(model.preview.open().read())
+
+    async def get_text_file(self, lesson_id: int) -> BytesIO:
+        model = await self.lesson_repository.get(lesson_id)
+        if model.preview is None:
+            raise HTTPException(404)
+        return BytesIO(model.text_file.open().read())

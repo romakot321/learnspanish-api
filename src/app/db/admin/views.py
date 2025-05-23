@@ -21,6 +21,6 @@ class LessonView(ModelView, model=Lesson):
     column_searchable_list = [Lesson.id, Lesson.title]
     column_default_sort = [(Lesson.created_at, True)]
     column_sortable_list = [Lesson.level]
-    column_formatters_detail = {"file": format_file_url, "image": format_image_url}
+    column_formatters_detail = {"file": format_file_url, "text_file": format_file_url, "image": format_image_url}
     column_formatters = {"image": format_image_url}
 

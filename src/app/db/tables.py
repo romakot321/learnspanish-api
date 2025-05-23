@@ -32,5 +32,6 @@ class Lesson(BaseMixin, Base):
     level: M[int] = column(doc="Глава")
     file: M[FileType] = column(type_=FileType(storage=storage), nullable=False)
     preview: M[ImageType | None] = column(type_=ImageType(storage=storage), nullable=True)
+    text_file: M[FileType] = column(type_=FileType(storage=storage), nullable=False)
     description: M[str | None]
 
