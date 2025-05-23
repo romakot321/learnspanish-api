@@ -1,6 +1,6 @@
 import datetime as dt
 from fastapi_storages import FileSystemStorage
-from fastapi_storages.integrations.sqlalchemy import FileType
+from fastapi_storages.integrations.sqlalchemy import FileType, ImageType
 
 from sqlalchemy import text
 from sqlalchemy.ext.declarative import declared_attr
@@ -31,4 +31,6 @@ class Lesson(BaseMixin, Base):
     title: M[str]
     level: M[int] = column(doc="Глава")
     file: M[FileType] = column(type_=FileType(storage=storage), nullable=False)
+    preview: M[ImageType | None] = column(type_=ImageType(storage=storage), nullable=True)
+    description: M[str | None]
 

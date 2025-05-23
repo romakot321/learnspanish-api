@@ -1,5 +1,5 @@
 from io import BytesIO
-from fastapi import Depends
+from fastapi import Depends, HTTPException
 
 from app.repositories.lesson import LessonRepository
 from app.repositories.storage import StorageRepository
@@ -29,3 +29,9 @@ class LessonService:
     async def get_file(self, lesson_id: int) -> BytesIO:
         model = await self.lesson_repository.get(lesson_id)
         return BytesIO(model.file.open().read())
+
+    async def get_preview(self, lesson_id: int) -> BytesIO:
+        model = await self.lesson_repository.get(lesson_id)
+        if model.preview is None:
+            raise HTTPException(404)
+        return BytesIO(model.preview.open().read())

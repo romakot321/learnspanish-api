@@ -21,6 +21,14 @@ async def get_lesson_file(lesson_id: int, service: LessonService = Depends()):
 
 
 @router.get(
+    "/{lesson_id}/preview", response_class=Response, dependencies=[Depends(validate_api_token)]
+)
+async def get_lesson_preview(lesson_id: int, service: LessonService = Depends()):
+    buffer = await service.get_preview(lesson_id)
+    return Response(content=buffer.getvalue(), media_type="image/jpg")
+
+
+@router.get(
     "",
     response_model=list[LessonShortSchema],
     dependencies=[Depends(validate_api_token)],

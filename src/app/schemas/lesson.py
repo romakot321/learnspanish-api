@@ -10,6 +10,7 @@ class LessonSchema(BaseModel):
     id: int
     title: str
     level: int
+    description: str | None = None
 
     @computed_field
     def audio_url(cls, value: str | None, _info: ValidationInfo) -> str:
@@ -22,6 +23,7 @@ class LessonShortSchema(BaseModel):
     id: int
     title: str
     level: int
+    description: str | None = None
 
     @computed_field
     def audio_url(cls, value: str | None, _info: ValidationInfo) -> str:
